@@ -7,6 +7,7 @@
 具体GOC代码包括：
 
 > GOC代码：[GOC testnet](https://github.com/BlockchainLabFudan/GOCtestnet)
+>
 > fc submodule代码(调整了Primary key prefix)：[Changed fc submodule](https://github.com/BlockchainLabFudan/fc)
 
 另，我们会在微信GOC测试网公测群发布关于源码分支的信息，重大调整会通过分支的方式预先发布，经过充分测试后，才合并至master主分支。
@@ -143,8 +144,10 @@ cd ~/GOCtestnet/build/programs/cleos
 
 
 
+
+
 ## 测试网维护人员联系方式
 
-代码层次的技术问题请联系刘百祥博士：[baixiangliu@gmail.com](mailto:baixiangliu@gmail.com)
+代码层次的技术问题请联系刘博士：[baixiangliu@gmail.com](mailto:baixiangliu@gmail.com)
 
-节点连接测试网等其它问题请微信联系陈澄（vc）：Chen7ccc
+节点连接测试网等其它问题请微信联系vc：Chen7ccc
