@@ -38,7 +38,7 @@ git clone git@github.com:xxxxxxxx/GOC-testnet.git
 # xxxxxxxx替换为你自己的GitHub帐号
 ```
 
-3、以gravitypool.ini为例，新建bp-name.ini到producer-info文件夹中，bp-name为你的BP名称
+3、以gravitypool.ini为例，新建bp-name.ini到producer-info文件夹中，bp-name为你的BP名称（12位字符，可选字符范围：1-5，a-z）
 
 4、将BP名称和p2p-peer-address添加到config.ini文件末尾（以已有信息为例）
 
