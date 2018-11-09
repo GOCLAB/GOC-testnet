@@ -54,7 +54,7 @@ git clone git@github.com:xxxxxxxx/GOC-testnet.git
 
 ```shell
 ~/GOCtestnet/build/programs/keosd/keosd   # 启动钱包服务
-cd ~/GOCtestnet/build/programs/cleos   # 进入cleos目录
+cd ~/GOCtestnet/build/programs/cleos   # 打开另外一个终端，进入cleos目录
 ./cleos wallet create --to-console    # 默认创建名为default的钱包，记录显示的钱包密码
 ./cleos wallet import       # 导入BP账户。运行后会提示输入私钥，输入BP账户的私钥
 ./cleos wallet create_key    # 创建一对公私钥作为producer key
