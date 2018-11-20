@@ -38,7 +38,7 @@ git clone git@github.com:xxxxxxxx/GOC-testnet.git
 # xxxxxxxx替换为你自己的GitHub帐号
 ```
 
-3、以gravitypool.ini为例，新建bp-name.ini到producer-info文件夹中，bp-name为你的BP名称
+3、以gravitypool.ini为例，新建bp-name.ini到producer-info文件夹中，bp-name为你的BP名称（12位字符，可选字符范围：1-5，a-z）
 
 4、将BP名称和p2p-peer-address添加到config.ini文件末尾（以已有信息为例）
 
@@ -54,7 +54,7 @@ git clone git@github.com:xxxxxxxx/GOC-testnet.git
 
 ```shell
 ~/GOCtestnet/build/programs/keosd/keosd   # 启动钱包服务
-cd ~/GOCtestnet/build/programs/cleos   # 进入cleos目录
+cd ~/GOCtestnet/build/programs/cleos   # 打开另外一个终端，进入cleos目录
 ./cleos wallet create --to-console    # 默认创建名为default的钱包，记录显示的钱包密码
 ./cleos wallet import       # 导入BP账户。运行后会提示输入私钥，输入BP账户的私钥
 ./cleos wallet create_key    # 创建一对公私钥作为producer key
@@ -115,7 +115,7 @@ genesis.json文件定义了初始链状态，所有节点必须从相同的初�
 ```shell
 cd ~/GOCtestnet/build/programs/nodeos
 
-./nodeos --genesis-json ./genesis.json --config-dir ~/GOCtestnet/build/programs/nodeos --http-server-address 0.0.0.0:8888 --p2p-listen-endpoint 0.0.0.0:9876 --http-validate-host=false --producer-name 'yourbpname' --signature-provider='your_producer_pub_key'=KEY:'your_producer_private_key' --plugin eosio::http_plugin --plugin eosio::chain_api_plugin --plugin eosio::producer_plugin
+./nodeos --genesis-json ./genesis.json --config-dir ~/GOCtestnet/build/programs/nodeos --http-server-address 0.0.0.0:8888 --p2p-listen-endpoint 0.0.0.0:9876 --http-validate-host=false --producer-name 'yourbpname' --signature-provider='your_producer_pub_key'=KEY:'your_producer_private_key' --plugin eosio::http_plugin --plugin eosio::chain_api_plugin --plugin eosio::producer_plugin --plugin eosio::history_api_plugin
 # yourbpname填入BP账户名; your_producer_pub_key、your_producer_private_key分别填入创建的producer key的公钥和私钥。
 ```
 
