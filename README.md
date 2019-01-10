@@ -96,8 +96,7 @@ cd ~/GOCtestnet/build/programs/cleos   # 打开另外一个终端，进入cleos�
     "max_inline_action_size": 4096,
     "max_inline_action_depth": 4,
     "max_authority_depth": 6
-  },
-  "initial_chain_id": "0000000000000000000000000000000000000000000000000000000000000000"
+  }
 }
 ```
 
