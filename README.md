@@ -76,8 +76,8 @@ cd ~/GOCtestnet/build/programs/cleos   # 打开另外一个终端，进入cleos�
 
 ```json
 {
-  "initial_timestamp": "2018-09-09T09:09:09.999",
-  "initial_key": "GOC7oiy488wfzwbR6L9QwNDQb4CHGVR5ix9udJjVyykgbLaQLgBc5",
+  "initial_timestamp": "2018-03-02T12:00:00.000",
+  "initial_key": "GOC8Znrtgwt8TfpmbVpTKvA2oB8Nqey625CLN8bCN3TEbgx86Dsvr",
   "initial_configuration": {
     "max_block_net_usage": 1048576,
     "target_block_net_usage_pct": 1000,
@@ -86,9 +86,9 @@ cd ~/GOCtestnet/build/programs/cleos   # 打开另外一个终端，进入cleos�
     "net_usage_leeway": 500,
     "context_free_discount_net_usage_num": 20,
     "context_free_discount_net_usage_den": 100,
-    "max_block_cpu_usage": 200000,
-    "target_block_cpu_usage_pct": 1000,
-    "max_transaction_cpu_usage": 150000,
+    "max_block_cpu_usage": 100000,
+    "target_block_cpu_usage_pct": 500,
+    "max_transaction_cpu_usage": 50000,
     "min_transaction_cpu_usage": 100,
     "max_transaction_lifetime": 3600,
     "deferred_trx_expiration_window": 600,
@@ -96,7 +96,8 @@ cd ~/GOCtestnet/build/programs/cleos   # 打开另外一个终端，进入cleos�
     "max_inline_action_size": 4096,
     "max_inline_action_depth": 4,
     "max_authority_depth": 6
-  }
+  },
+  "initial_chain_id": "0000000000000000000000000000000000000000000000000000000000000000"
 }
 ```
 
