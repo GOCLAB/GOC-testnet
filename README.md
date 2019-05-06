@@ -1,64 +1,43 @@
 # 如何加入GOC测试网
 
+测试网Chain ID：c393daba1664b8fece45d4af778051412db3bcbb8c699e78ccfc6079aa11ff39
+
 ## 一、获取代码
-
-测试时，GOC在Github上的代码目前以私有方式提供，因此首先需向测试网维护人员提供Github账户名，以便授予权限，联系方式见文末。
-
-具体GOC代码包括：
-
-> GOC代码：[GOC testnet](https://github.com/BlockchainLabFudan/GOCtestnet)
->
-> fc submodule代码(调整了Primary key prefix)：[Changed fc submodule](https://github.com/BlockchainLabFudan/fc)
-
-另，我们会在微信GOC测试网公测群发布关于源码分支的信息，重大调整会通过分支的方式预先发布，经过充分测试后，才合并至master主分支。
-
-**获得权限后**，在命令行终端窗口执行以下命令获取代码并编译：
 
 ```sh
 cd ~    # 退出当前目录，进入主目录
-git clone git@github.com:BlockchainLabFudan/GOCtestnet.git
-cd GOCtestnet
+git clone https://github.com/GOCLAB/goc.git
+cd goc
 git submodule update --init --recursive
 sudo ./eosio_build.sh -s 'GOC'
 sudo ./eosio_install.sh
 ```
 
 
+## 二、导入BP账户
 
-## 二、获取BP账户
-
-获取BP账户需先准备好相关信息（如服务器IP）并提交至[Github](https://github.com/GOCLAB/GOC-testnet)上，然后联系测试网维护人员创建BP账户，具体步骤如下：
-
-1、Fork本[repository](https://github.com/GOCLAB/GOC-testnet)
-
-2、Clone Fork的repository（不是本repo）到本地
+测试网已根据GOC主网2019年5月5日所有BP账户快照，在测试网上创建了对应的BP账户，各位BP只需解锁主网钱包或导入相应私钥到钱包即可操作测试网BP账户。具体BP账户名单如下：
 
 ```sh
-git clone git@github.com:xxxxxxxx/GOC-testnet.git 
-# xxxxxxxx替换为你自己的GitHub帐号
+[u'goclabgoclab', u'fudangocbp11', u'halowalletbp', u'lichang11111', u'gravitypooll', u'palletone111', u'gocbeijingbp', u'gbacbpforgoc', u'chainwavegoc', u'gocsecbookbp', u'blockgogreat', u'gogocbpgogoc', u'bpyottachain', u'shanghainode', u'starthallobp', u'gocwaterdrip', u'governancebp', u'consultingbp', u'blockedencom', u'gocchaingeek', u'interchainbp', u'eosouwallet1', u'eosrealbpcsg', u'goclegalnode', u'sursengroupt', u'zmaozmaozmao', u'goc111111111', u'goc121goc121']
 ```
 
-3、以gravitypool.ini为例，新建bp-name.ini到producer-info文件夹中，bp-name为你的BP名称（12位字符，可选字符范围：1-5，a-z）
+导入相应私钥到钱包的具体步骤如下：
 
-4、将BP名称和p2p-peer-address添加到config.ini文件末尾（以已有信息为例）
-
-5、创建一个pull request将你的BP信息提交至[GOC-testnet](https://github.com/GOCLAB/GOC-testnet)上
-
-6、联系测试网维护人员创建BP账户
-
-
+```sh
+~/goc/build/programs/keosd/keosd &  # 后台启动钱包服务
+cd ~/goc/build/programs/cleos   # 进入cleos目录
+./cleos wallet create --to-console    # 默认创建名为default的钱包，记录打印出来的钱包密码
+./cleos wallet import       # 运行该命令后会提示输入私钥，即导入私钥到default钱包
+```
 
 ## 三、注册出块BP
 
 **账户创建完成后**，将BP账户注册为出块BP：
 
 ```shell
-~/GOCtestnet/build/programs/keosd/keosd   # 启动钱包服务
-cd ~/GOCtestnet/build/programs/cleos   # 打开另外一个终端，进入cleos目录
-./cleos wallet create --to-console    # 默认创建名为default的钱包，记录显示的钱包密码
-./cleos wallet import       # 导入BP账户。运行后会提示输入私钥，输入BP账户的私钥
 ./cleos wallet create_key    # 创建一对公私钥作为producer key
-./cleos -u http://47.52.114.54:8888 system regproducer 'yourbpname' 'your_producer_pub_key' 
+./cleos -u http://api.goclab.io:7777 system regproducer <yourbpname> <your_producer_pub_key>
 # yourbpname为你的BP账户名，your_producer_pub_key为上一条命令创建的公钥
 ```
 
@@ -76,8 +55,8 @@ cd ~/GOCtestnet/build/programs/cleos   # 打开另外一个终端，进入cleos�
 
 ```json
 {
-  "initial_timestamp": "2018-03-02T12:00:00.000",
-  "initial_key": "GOC8Znrtgwt8TfpmbVpTKvA2oB8Nqey625CLN8bCN3TEbgx86Dsvr",
+  "initial_timestamp": "2019-05-01T00:00:00.000",
+  "initial_key": "GOC7ansp4mGVtCoWbWv9zpkspZYV3YFJRVRxTLBQXJkR64fQF7rjo",
   "initial_configuration": {
     "max_block_net_usage": 1048576,
     "target_block_net_usage_pct": 1000,
@@ -86,9 +65,9 @@ cd ~/GOCtestnet/build/programs/cleos   # 打开另外一个终端，进入cleos�
     "net_usage_leeway": 500,
     "context_free_discount_net_usage_num": 20,
     "context_free_discount_net_usage_den": 100,
-    "max_block_cpu_usage": 100000,
-    "target_block_cpu_usage_pct": 500,
-    "max_transaction_cpu_usage": 50000,
+    "max_block_cpu_usage": 300000,
+    "target_block_cpu_usage_pct": 1000,
+    "max_transaction_cpu_usage": 250000,
     "min_transaction_cpu_usage": 100,
     "max_transaction_lifetime": 3600,
     "deferred_trx_expiration_window": 600,
@@ -104,7 +83,7 @@ genesis.json文件定义了初始链状态，所有节点必须从相同的初�
 
 2、config.ini
 
-将[GOC-testnet](https://github.com/GOCLAB/GOC-testnet)里的config.ini复制到~/GOCtestnet/build/programs/nodeos文件夹下，**注意要将自己的p2p-peer-address移除**
+将[config.ini](https://github.com/GOCLAB/GOC-testnet/blob/master/config.ini)复制到~/goc/build/programs/nodeos文件夹下
 
 
 
@@ -113,7 +92,7 @@ genesis.json文件定义了初始链状态，所有节点必须从相同的初�
 准备好一切之后，便可启动出块节点，连接测试网：
 
 ```shell
-cd ~/GOCtestnet/build/programs/nodeos
+cd ~/goc/build/programs/nodeos
 
 ./nodeos --genesis-json ./genesis.json --config-dir ~/GOCtestnet/build/programs/nodeos --http-server-address 0.0.0.0:8888 --p2p-listen-endpoint 0.0.0.0:9876 --http-validate-host=false --producer-name 'yourbpname' --signature-provider='your_producer_pub_key'=KEY:'your_producer_private_key' --plugin eosio::http_plugin --plugin eosio::chain_api_plugin --plugin eosio::producer_plugin --plugin eosio::history_api_plugin
 # yourbpname填入BP账户名; your_producer_pub_key、your_producer_private_key分别填入创建的producer key的公钥和私钥。
@@ -132,7 +111,7 @@ cd ~/GOCtestnet/build/programs/nodeos
 再打开另一个命令行终端窗口，输入以下命令：
 
 ```shell
-cd ~/GOCtestnet/build/programs/cleos
+cd ~/goc/build/programs/cleos
 
 ./cleos system voteproducer prods 'yourbpname' 'yourbpname'
 # yourbpname填入BP账户名
@@ -144,10 +123,3 @@ cd ~/GOCtestnet/build/programs/cleos
 
 
 
-
-
-## 测试网维护人员联系方式
-
-代码层次的技术问题请联系刘博士：[baixiangliu@gmail.com](mailto:baixiangliu@gmail.com)
-
-节点连接测试网等其它问题请微信联系vc：Chen7ccc
