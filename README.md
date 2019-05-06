@@ -33,7 +33,7 @@ cd ~/goc/build/programs/cleos   # 进入cleos目录
 
 ## 三、注册出块BP
 
-**账户创建完成后**，将BP账户注册为出块BP：
+**账户导入完成后**，将BP账户注册为出块BP：
 
 ```shell
 ./cleos wallet create_key    # 创建一对公私钥作为producer key
@@ -51,7 +51,7 @@ cd ~/goc/build/programs/cleos   # 进入cleos目录
 
 1、genesis.json
 
-在~/GOCtestnet/build/programs/nodeos文件夹下创建 *genesis.json* 文件，填入以下内容：
+在~/goc/build/programs/nodeos文件夹下创建 *genesis.json* 文件，填入以下内容：
 
 ```json
 {
@@ -94,7 +94,7 @@ genesis.json文件定义了初始链状态，所有节点必须从相同的初�
 ```shell
 cd ~/goc/build/programs/nodeos
 
-./nodeos --genesis-json ./genesis.json --config-dir ~/GOCtestnet/build/programs/nodeos --http-server-address 0.0.0.0:8888 --p2p-listen-endpoint 0.0.0.0:9876 --http-validate-host=false --producer-name 'yourbpname' --signature-provider='your_producer_pub_key'=KEY:'your_producer_private_key' --plugin eosio::http_plugin --plugin eosio::chain_api_plugin --plugin eosio::producer_plugin --plugin eosio::history_api_plugin
+./nodeos --genesis-json ./genesis.json --config-dir ~/goc/build/programs/nodeos --http-server-address 0.0.0.0:8888 --p2p-listen-endpoint 0.0.0.0:9876 --http-validate-host=false --producer-name 'yourbpname' --signature-provider='your_producer_pub_key'=KEY:'your_producer_private_key' --plugin eosio::http_plugin --plugin eosio::chain_api_plugin --plugin eosio::producer_plugin --plugin eosio::history_api_plugin
 # yourbpname填入BP账户名; your_producer_pub_key、your_producer_private_key分别填入创建的producer key的公钥和私钥。
 ```
 
@@ -120,6 +120,4 @@ cd ~/goc/build/programs/cleos
 # 查看当前测试网出块节点
 ```
 当nodeos同步到最新块，且得票数足够多BP账户出现在schedule中时，便可观察自己的节点是否正常出块
-
-
 
